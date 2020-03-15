@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Proto {
+    message Vault {
+        uint64 version = 1;
+        bytes id = 2;
+        bytes salt = 3;
+        bytes eik = 4;
+        bytes emk = 5;
+    }
+}
