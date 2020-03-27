@@ -9,6 +9,28 @@
 - [x] `Recovery Key` by design
 - [x] Different `Serialization` types
 
+## Usage
+#### Create
+```swift
+let password: String = ...
+let databaseEncryptionKey: Bytes = ...
+
+
+let created = Vault1.create(password: password, master: databaseEncryptionKey, serializer: ProtobufSerializer.self)
+```
+
+#### Open
+```swift
+let openedWithPassword = try Vault1.open(password: password, serialized: created.serialized, serializer: ProtobufSerializer.self)
+let openedWithIntermediate = try Vault1.open(intermediate: created.vault.intermediate, serialized: created.serialized, serializer: ProtobufSerializer.self)
+```
+
+#### Change
+```swift
+let changedWithPassword = try Vault1.change(old: password, new: "newPassword", serialized: created.serialized, serializer: ProtobufSerializer.self)
+let changedWithIntermediate = try Vault1.change(intermediate: created.vault.intermediate, new: "newPassword", serialized: created.serialized, serializer: ProtobufSerializer.self)
+```
+
 ### Master Key
 `Master Key` - is an arbitrary length piece of Data, note that depending on your case it may be needed to `pad` that data.
 

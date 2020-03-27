@@ -27,7 +27,7 @@ public struct Vault1: Equatable {
     }
     
     // MARK: - Create Vault
-    public static func create(password: Password, id: UUID = UUID(), intermediate: Crypto.Symmetric.Key = .init(), master: Bytes, serializer: Serializer.Type = ProtobufSerializer.self) -> (vault: Self, serialized: Data) {
+    public static func create(password: Password, id: UUID = UUID(), intermediate: Crypto.Symmetric.Key = .init(), master: Bytes, serializer: Serializer.Type) -> (vault: Self, serialized: Data) {
         let salt = Crypto.Kdf.Salt()
         
         let dmp = Crypto.Kdf.derivate(password: password, salt: salt, cpu: Self.CPU, ram: Self.RAM)
@@ -49,7 +49,7 @@ public struct Vault1: Equatable {
     }
     
     // MARK: - Open Vault
-    public static func open(password: Password, serialized data: Data, serializer: Serializer.Type = ProtobufSerializer.self) throws -> Self {
+    public static func open(password: Password, serialized data: Data, serializer: Serializer.Type) throws -> Self {
         let model = try serializer.unserialize(data: data)
 
         let dmp = Crypto.Kdf.derivate(password: password, salt: model.salt, cpu: Self.CPU, ram: Self.RAM)
@@ -58,7 +58,7 @@ public struct Vault1: Equatable {
         return try self.open(intermediate: .init(intermediate), model: model)
     }
 
-    public static func open(intermediate: Crypto.Symmetric.Key, serialized data: Data, serializer: Serializer.Type = ProtobufSerializer.self) throws -> Self {
+    public static func open(intermediate: Crypto.Symmetric.Key, serialized data: Data, serializer: Serializer.Type) throws -> Self {
         return try self.open(intermediate: intermediate, model: serializer.unserialize(data: data))
     }
 
@@ -69,7 +69,7 @@ public struct Vault1: Equatable {
     }
     
     // MARK: - Change Vault Password
-    public static func change(old: Password, new: Password, serialized data: Data, serializer: Serializer.Type = ProtobufSerializer.self) throws -> (vault: Self, serialized: Data) {
+    public static func change(old: Password, new: Password, serialized data: Data, serializer: Serializer.Type) throws -> (vault: Self, serialized: Data) {
         let old = try self.open(password: old, serialized: data, serializer: serializer)
 
         return self.create(
@@ -81,7 +81,7 @@ public struct Vault1: Equatable {
         )
     }
 
-    public static func change(intermediate: Crypto.Symmetric.Key, new: Password, serialized data: Data, serializer: Serializer.Type = ProtobufSerializer.self) throws -> (vault: Self, serialized: Data) {
+    public static func change(intermediate: Crypto.Symmetric.Key, new: Password, serialized data: Data, serializer: Serializer.Type) throws -> (vault: Self, serialized: Data) {
         let old = try self.open(intermediate: intermediate, serialized: data, serializer: serializer)
 
         return self.create(

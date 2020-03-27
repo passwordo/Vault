@@ -1,16 +1,31 @@
 Pod::Spec.new do |s|
-  s.name           = "Vault1"
-  s.version        = "1.0.0"
-  s.summary        = "Secure and Simple"
-  s.homepage       = "https://github.com/passlock/Vault"
-  s.license        = "MIT"
-  s.author         = "Passlock, Inc"
-  s.platform       = :ios, "11.0"
-  s.source         = { :git => "https://github.com/passlock/Vault.git", :tag => "#{s.version}" }
-  s.source_files   = "Sources", "Sources/**/*.swift"
-  s.preserve_paths = "Sources/Proto"
+  s.name            = "Vault1"
+  s.version         = "1.1.0"
+  s.summary         = "Secure and Simple"
+  s.homepage        = "https://github.com/passlock/Vault"
+  s.license         = "MIT"
+  s.author          = "Passlock, Inc"
+  s.platform        = :ios, "11.0"
+  s.source          = { :git => "https://github.com/passlock/Vault.git", :tag => "#{s.version}" }
 
-  s.dependency 'Sodium', '~> 0.8'
-  s.dependency 'SwiftProtobuf', '~> 1.0'
-  s.dependency 'Crypto'
+  s.default_subspec = 'Protobuf'
+
+  s.subspec 'Core' do |ss|
+    ss.source_files   = ["Sources/Vault1.swift", "Sources/Serializers/Serializer.swift", "Sources/Internal/UUID.swift"]
+
+    ss.dependency 'Crypto'
+  end
+
+  s.subspec 'Protobuf' do |ss|
+    ss.source_files = ['Sources/Serializers/Protobuf/**/*.{swift}']
+
+    ss.dependency 'Vault1/Core'
+    ss.dependency 'SwiftProtobuf'
+  end
+
+  s.subspec 'Json' do |ss|
+    ss.source_files = ['Sources/Serializers/Json/**/*.{swift}']
+
+    ss.dependency 'Vault1/Core'
+  end
 end

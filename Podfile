@@ -4,8 +4,7 @@ inhibit_all_warnings!
 
 target 'Vault1' do
     pod 'Crypto', :git => 'https://github.com/passlock/Crypto.git'
-    pod 'Sodium', '~> 0.8'
-    pod 'SwiftProtobuf', '~> 1.0'
+    pod 'SwiftProtobuf'
     
     pod 'SwiftLint'
     

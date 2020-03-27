@@ -96,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				44C35C0623D84E5D0074B08C /* Proto */,
-				44F9D516240AB4F10013B5D7 /* Internal */,
 				44A0A5DD241E688400840B4A /* ProtobufSerializer.swift */,
 			);
 			path = Protobuf;
@@ -158,6 +157,7 @@
 		44C35C0523D84E5D0074B08C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				44F9D516240AB4F10013B5D7 /* Internal */,
 				44A0A5D8241E680A00840B4A /* Serializers */,
 				44C35C0C23D84E5D0074B08C /* Vault1.swift */,
 			);
