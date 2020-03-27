@@ -9,6 +9,13 @@
 - [x] `Recovery Key` by design
 - [x] Different `Serialization` types
 
+## Installation
+#### CocoaPods
+```ruby
+pod 'Crypto', :git => 'https://github.com/passlock/Crypto.git'
+pod 'Vault1', :git => 'https://github.com/passlock/Vault.git'
+```
+
 ## Usage
 #### Create
 ```swift
@@ -46,4 +53,4 @@ Designed with `Migration` in mind, current branch is `Vault1` intentionaly as fo
 - [x] Support custom serialization
 
 ## Contribute
-If you believe you have identified a security vulnerability with `Vault`, you should report it as soon as possible via email to `security@passlock.io`. Please do not post it to a public issue tracker.
+If you believe you have identified a security vulnerability with `Vault`, please report it as soon as possible via email to `security@passlock.io` and don't post it to a public issue tracker.
