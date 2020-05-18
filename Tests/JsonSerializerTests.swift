@@ -4,7 +4,7 @@ import Crypto
 
 class JsonSerializerTests: XCTestCase {
     func testEncodeDecode() {
-        let model = Model(version: 1, id: UUID(), salt: .init(), encryptedIntermediateKey: Crypto.Utils.random(256), encryptedMasterKey: Crypto.Utils.random(256))
+        let model = Model(version: 1, id: UUID(), salt: .init(), encryptedIntermediateKey: Crypto.Misc.random(256), encryptedMasterKey: Crypto.Misc.random(256))
         
         let serialized = try! JsonSerializer.serialize(model: model)
         let unserialized = try! JsonSerializer.unserialize(data: serialized)

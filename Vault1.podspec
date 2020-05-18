@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name            = "Vault1"
-  s.version         = "1.1.0"
+  s.version         = "1.1.1"
   s.summary         = "Safe place for your encryption keys."
   s.homepage        = "https://github.com/passlock/Vault"
   s.license         = "MIT"

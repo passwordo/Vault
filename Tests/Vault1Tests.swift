@@ -3,6 +3,28 @@ import XCTest
 import Vault1
 import Crypto
 
+extension Vault1 {
+    static func create(password: Password, id: UUID = UUID(), intermediate: Crypto.Symmetric.Key = .init(), master: Bytes) -> (vault: Self, serialized: Data) {
+        return Vault1.create(password: password, id: id, intermediate: intermediate, master: master, serializer: ProtobufSerializer.self)
+    }
+    
+    static func open(password: Password, serialized data: Data) throws -> Self {
+        return try Vault1.open(password: password, serialized: data, serializer: ProtobufSerializer.self)
+    }
+
+    static func open(intermediate: Crypto.Symmetric.Key, serialized data: Data) throws -> Self {
+        return try Vault1.open(intermediate: intermediate, serialized: data, serializer: ProtobufSerializer.self)
+    }
+    
+    static func change(old: Password, new: Password, serialized data: Data) throws -> (vault: Self, serialized: Data) {
+        return try Vault1.change(old: old, new: new, serialized: data, serializer: ProtobufSerializer.self)
+    }
+
+    static func change(intermediate: Crypto.Symmetric.Key, new: Password, serialized data: Data) throws -> (vault: Self, serialized: Data) {
+        return try Vault1.change(intermediate: intermediate, new: new, serialized: data, serializer: ProtobufSerializer.self)
+    }
+}
+
 class VaultTests: XCTestCase {
     func testCreate() {
         let password = "123"
