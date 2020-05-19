@@ -6,7 +6,7 @@ xcode_scheme: Crypto
 
 branches:
   only:
-    - master
+    - Vault1
 
 jobs:
   include:
