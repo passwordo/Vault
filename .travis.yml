@@ -1,0 +1,20 @@
+os: osx
+osx_image: xcode11.4
+language: swift
+xcode_workspace: Crypto.xcworkspace
+xcode_scheme: Crypto
+
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    # iOS 11.4
+    - xcode_destination: platform=iOS Simulator,OS=11.4,name=iPhone 8
+
+    # iOS 12.4
+    - xcode_destination: platform=iOS Simulator,OS=12.4,name=iPhone 8
+
+    # LATEST iOS Version
+    - xcode_destination: platform=iOS Simulator,name=iPhone 8

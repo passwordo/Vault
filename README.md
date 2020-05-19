@@ -1,5 +1,9 @@
 ![Logo](Assets/Logo.png)
 
+[![Build Status](https://travis-ci.org/passlock/Vault.svg?branch=Vault1)](https://travis-ci.org/passlock/Vault)
+[![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![swift](https://img.shields.io/badge/swift-5-brightgreen.svg)](https://swift.org)
+
 `Vault` - key management core of Passlock.
 
 ## Features
