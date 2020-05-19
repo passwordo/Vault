@@ -1,8 +1,8 @@
 os: osx
 osx_image: xcode11.4
 language: swift
-xcode_workspace: Crypto.xcworkspace
-xcode_scheme: Crypto
+xcode_workspace: Vault1.xcworkspace
+xcode_scheme: Vault1
 
 branches:
   only:
